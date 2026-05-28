@@ -6,12 +6,12 @@
 
 ##  Integrantes
 
-| Nombre | Código | Rol |
-|--------|--------|-----|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-|  |  |  |
+| Nombre | Rol |
+|--------|-------|
+|Juan Jose Salazar Munoz| chat bot  |
+| David Santiago Chivata Garcia | base de datos  |
+|Victor Manuel Sarmiento puentes  | progamador delsistema de detecion de objetos  |
+| Daniel Felipe Peñaloza Bravo | crear y reportar probra y dar evidemcias en git del proyecto  |
 
 ---
 
