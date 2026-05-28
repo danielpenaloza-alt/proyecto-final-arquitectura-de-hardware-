@@ -1,0 +1,219 @@
+# Proyecto Final
+**Fundación Universitaria Compensar**  
+**Docente:** Diego Alejandro Barragán Vargas  
+*Ingeniero Electrónico, Magíster en Ingeniería, Doctorando UDFJC*
+---
+
+##  Integrantes
+
+| Nombre | Código | Rol |
+|--------|--------|-----|
+|  |  |  |
+|  |  |  |
+|  |  |  |
+|  |  |  |
+
+---
+
+## Descripción General
+
+Desarrollo de una plataforma de **visión computacional** para el reconocimiento automático de partes de un computador. El sistema integra un modelo de detección de objetos (YOLO), un chatbot generativo con soporte de voz, y se despliega en Streamlit. Como reto final, el modelo es optimizado y ejecutado en una **Raspberry Pi**.
+
+---
+
+## Tabla de Contenidos
+
+- [Integrantes](#integrantes)
+- [Punto 1 — Web Scraping y Base de Datos](#punto-1--web-scraping-y-base-de-datos)
+- [Punto 2 — ETL de la Base de Datos](#punto-2--etl-de-la-base-de-datos)
+- [Punto 3 — Modelo YOLO (Detección de Partes)](#punto-3--modelo-yolo-detección-de-partes)
+- [Punto 4 — Chatbot Generativo con Voz](#punto-4--chatbot-generativo-con-voz)
+- [Punto 5 — Despliegue en Streamlit](#punto-5--despliegue-en-streamlit)
+- [Punto 6 — Despliegue en Raspberry Pi ](#punto-6--despliegue-en-raspberry-pi-)
+- [Estructura del Repositorio](#estructura-del-repositorio)
+
+---
+
+## Punto 1 — Web Scraping y Base de Datos
+
+###  Descripción
+Recolección automatizada de imágenes de al menos **10 componentes del PC** usando `Selenium`. La base de datos debe contener un mínimo de **100 imágenes por componente**.
+
+**Componentes objetivo:**
+`monitor` · `chasis` · `mouse` · `teclado` · `altavoces` · `impresora` · `webcam` · `CPU` · `memoria RAM` · `disco duro` · `tarjeta de video` · `tarjeta de red`
+
+###  Requerimientos
+- [ ] Script de web scraping con `Selenium`
+- [ ] Búsqueda de mínimo 10 componentes
+- [ ] Mínimo 100 imágenes por componente
+- [ ] El chatbot debe poder explicar definición y función de cada elemento
+
+### Evidencias Fotográficas
+
+> Agrega aquí capturas de pantalla del proceso. Ejemplo:
+> ```
+> ![Descripción](evidencias/punto1/nombre_imagen.png)
+> ```
+
+| Evidencia | Descripción | Fecha |
+|-----------|-------------|-------|
+| ![Scraping ejecutándose](evidencias/punto1/scraping_ejecucion.png) | Script de Selenium en ejecución | |
+| ![Estructura de carpetas](evidencias/punto1/estructura_bd.png) | Organización de la base de datos de imágenes | |
+| ![Muestra de imágenes](evidencias/punto1/muestra_imagenes.png) | Muestra de imágenes recolectadas por clase | |
+
+---
+
+## Punto 2 — ETL de la Base de Datos
+
+###  Descripción
+Proceso de **Extracción, Transformación y Carga** para limpiar y preparar las imágenes recolectadas. Se usa programación con **hilos (threads)** para optimizar el procesamiento.
+
+###  Requerimientos
+- [ ] Pre-procesamiento y procesamiento con hilos (`threading`)
+- [ ] Limpieza de datos: filtrar imágenes válidas vs. inválidas
+- [ ] Extracción de información relevante y transformación
+- [ ] Documentación detallada en GitHub
+
+### 📸 Evidencias Fotográficas
+
+| Evidencia | Descripción | Fecha |
+|-----------|-------------|-------|
+| ![ETL pipeline](evidencias/punto2/etl_pipeline.png) | Diagrama o flujo del proceso ETL implementado | |
+| ![Limpieza de datos](evidencias/punto2/limpieza_datos.png) | Comparación imágenes válidas vs. descartadas | |
+| ![Procesamiento con hilos](evidencias/punto2/hilos_ejecucion.png) | Ejecución del procesamiento paralelo con hilos | |
+| ![Dataset final](evidencias/punto2/dataset_final.png) | Dataset limpio y listo para entrenamiento | |
+
+---
+
+## Punto 3 — Modelo YOLO (Detección de Partes)
+
+###  Descripción
+Entrenamiento y configuración de un modelo **YOLO** para clasificar y detectar las partes del PC en imágenes y video en tiempo real.
+
+###  Requerimientos
+- [ ] Anotación del dataset (bounding boxes por componente)
+- [ ] Entrenamiento del modelo YOLO
+- [ ] Validación y métricas (mAP, precisión, recall)
+- [ ] Pruebas de detección sobre imágenes y video
+
+###  Evidencias Fotográficas
+
+| Evidencia | Descripción | Fecha |
+|-----------|-------------|-------|
+| ![Anotaciones](evidencias/punto3/anotaciones.png) | Ejemplo de imágenes anotadas con bounding boxes | |
+| ![Entrenamiento](evidencias/punto3/entrenamiento_loss.png) | Curvas de pérdida durante el entrenamiento | |
+| ![Métricas](evidencias/punto3/metricas_yolo.png) | Métricas finales del modelo (mAP, precisión, recall) | |
+| ![Detección en acción](evidencias/punto3/deteccion_resultado.png) | Resultado de detección sobre imagen de prueba | |
+
+---
+
+## Punto 4 — Chatbot Generativo con Voz
+
+###  Descripción
+Chatbot capaz de recibir preguntas mediante **reconocimiento de voz** y responder también por **voz**, explicando la definición y función de cada componente del PC detectado.
+
+###  Requerimientos
+- [ ] Reconocimiento de voz (Speech-to-Text)
+- [ ] Generación de respuesta (modelo generativo / LLM)
+- [ ] Síntesis de voz (Text-to-Speech)
+- [ ] Integración con los componentes detectados por YOLO
+
+###  Evidencias Fotográficas
+
+| Evidencia | Descripción | Fecha |
+|-----------|-------------|-------|
+| ![Arquitectura chatbot](evidencias/punto4/arquitectura_chatbot.png) | Diagrama de la arquitectura del chatbot | |
+| ![Interfaz chatbot](evidencias/punto4/interfaz_chatbot.png) | Interfaz del chatbot funcionando | |
+| ![Respuesta de voz](evidencias/punto4/respuesta_voz.png) | Captura de respuesta generada sobre un componente | |
+
+---
+
+## Punto 5 — Despliegue en Streamlit
+
+###  Descripción
+Integración de todos los módulos (detección YOLO + chatbot con voz) en una **plataforma web desplegada con Streamlit**.
+
+###  Requerimientos
+- [ ] Interfaz completa en Streamlit
+- [ ] Módulo de detección de partes del PC (cámara / imagen)
+- [ ] Módulo de chatbot con voz integrado
+- [ ] Todo el desarrollo documentado paso a paso en GitHub
+
+###  Evidencias Fotográficas
+
+| Evidencia | Descripción | Fecha |
+|-----------|-------------|-------|
+| ![Dashboard principal](evidencias/punto5/dashboard_principal.png) | Vista principal de la aplicación Streamlit | |
+| ![Detección en plataforma](evidencias/punto5/deteccion_streamlit.png) | Detección de partes funcionando en la plataforma | |
+| ![Chatbot en plataforma](evidencias/punto5/chatbot_streamlit.png) | Chatbot con voz integrado en la plataforma | |
+| ![Demo completo](evidencias/punto5/demo_completo.png) | Demo del sistema completo en funcionamiento | |
+
+---
+
+## Punto 6 — Despliegue en Raspberry Pi 
+
+###  Descripción
+Para obtener la **nota máxima (5.0)**, el modelo YOLO optimizado debe ejecutarse en una **Raspberry Pi**, demostrando el despliegue en hardware embebido.
+
+###  Requerimientos
+- [ ] Optimización del modelo YOLO (quantización / exportación a TFLite / ONNX)
+- [ ] Instalación y configuración del entorno en Raspberry Pi
+- [ ] Ejecución del modelo en tiempo real en la Raspberry Pi
+- [ ] Integración con la arquitectura computacional completa
+
+###  Evidencias Fotográficas
+
+| Evidencia | Descripción | Fecha |
+|-----------|-------------|-------|
+| ![Setup Raspberry Pi](evidencias/punto6/raspberry_setup.png) | Configuración física de la Raspberry Pi | |
+| ![Modelo corriendo](evidencias/punto6/modelo_raspberry.png) | YOLO ejecutándose en la Raspberry Pi | |
+| ![Resultado detección](evidencias/punto6/deteccion_raspberry.png) | Detección de componentes en la Raspberry Pi | |
+| ![Sistema completo](evidencias/punto6/sistema_completo.png) | Sistema embebido completo funcionando | |
+
+---
+
+##  Estructura del Repositorio
+
+```
+ proyecto-arquitectura-hardware
+├── 📂 evidencias/
+│   ├── punto1/        # Capturas del web scraping y BD
+│   ├── punto2/        # Capturas del proceso ETL
+│   ├── punto3/        # Capturas del entrenamiento YOLO
+│   ├── punto4/        # Capturas del chatbot con voz
+│   ├── punto5/        # Capturas del despliegue Streamlit
+│   └── punto6/        # Capturas del despliegue Raspberry Pi
+├── 📂 punto1_scraping/
+│   └── scraper.py
+├── 📂 punto2_etl/
+│   └── etl_pipeline.py
+├── 📂 punto3_yolo/
+│   ├── train.py
+│   └── detect.py
+├── 📂 punto4_chatbot/
+│   └── chatbot_voz.py
+├── 📂 punto5_streamlit/
+│   └── app.py
+├── 📂 punto6_raspberry/
+│   └── deploy_rpi.py
+└── README.md
+```
+
+
+
+## Estado General del Proyecto
+
+| Punto | Descripción | Estado |
+|-------|-------------|--------|
+| 1 | Web Scraping y Base de Datos |  en proceso |
+| 2 | ETL de la Base de Datos |  en proceso |
+| 3 | Modelo YOLO |  en proceso |
+| 4 | Chatbot con Voz | en proceso |
+| 5 | Despliegue Streamlit |  en proceso |
+| 6 | Despliegue Raspberry Pi  |  en proceso |
+
+> **Leyenda:**  Sin iniciar ·  En progreso ·  Completado
+
+---
+
+*Fundación Universitaria Compensar — Materia: Arquitectura de Hardware*
