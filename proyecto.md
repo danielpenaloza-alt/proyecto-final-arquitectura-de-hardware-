@@ -8,10 +8,10 @@
 
 | Nombre | Rol |
 |--------|-------|
-|Juan Jose Salazar Munoz| chat bot  |
-| David Santiago Chivata Garcia | base de datos  |
-|Victor Manuel Sarmiento puentes  | progamador delsistema de detecion de objetos  |
-| Daniel Felipe Peñaloza Bravo | crear y reportar probra y dar evidemcias en git del proyecto  |
+|Juan Jose Salazar Munoz| creacion dechat bot  |
+| David Santiago Chivata Garcia |planeacion de base de datos  |
+|Victor Manuel Sarmiento puentes  | progamador del sistema de detecion de objetos  |
+| Daniel Felipe Peñaloza Bravo | crear y reportar probra y dar evidencias en git del proyecto  |
 
 ---
 
@@ -122,8 +122,8 @@ Chatbot capaz de recibir preguntas mediante **reconocimiento de voz** y responde
 
 | Evidencia | Descripción | Fecha |
 |-----------|-------------|-------|
-![imagen]((https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/3ab9394c574446cb5d622734e7d74d1eea071c8f/chat%20bot1.png)) 
-| ![Interfaz chatbot](evidencias/punto4/interfaz_chatbot.png) | Interfaz del chatbot funcionando | |
+![imagen]((https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/afa1e4cc635ed203ff556bf35c8e27065004a32d/chat%20bot1.png)). 
+| ![Interfaz chatbot](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/afa1e4cc635ed203ff556bf35c8e27065004a32d/chat%20bot%202.png) | Interfaz del chatbot funcionando | |
 | ![Respuesta de voz](evidencias/punto4/respuesta_voz.png) | Captura de respuesta generada sobre un componente | |
 
 ---
