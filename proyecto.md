@@ -122,7 +122,7 @@ Chatbot capaz de recibir preguntas mediante **reconocimiento de voz** y responde
 
 | Evidencia | Descripción | Fecha |
 |-----------|-------------|-------|
-![imagen]([evidencias/punto4/arquitectura_chatbot.png](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/3ab9394c574446cb5d622734e7d74d1eea071c8f/chat%20bot1.png)) 
+![imagen]((https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/3ab9394c574446cb5d622734e7d74d1eea071c8f/chat%20bot1.png)) 
 | ![Interfaz chatbot](evidencias/punto4/interfaz_chatbot.png) | Interfaz del chatbot funcionando | |
 | ![Respuesta de voz](evidencias/punto4/respuesta_voz.png) | Captura de respuesta generada sobre un componente | |
 
