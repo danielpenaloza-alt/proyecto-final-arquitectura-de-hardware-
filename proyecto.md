@@ -98,12 +98,12 @@ Entrenamiento y configuración de un modelo **YOLO** para clasificar y detectar 
 
 ###  Evidencias Fotográficas
 
-| Evidencia | Descripción | Fecha |
-|-----------|-------------|-------|
-| ![Anotaciones](evidencias/punto3/anotaciones.png) | Ejemplo de imágenes anotadas con bounding boxes | |
-| ![Entrenamiento](evidencias/punto3/entrenamiento_loss.png) | Curvas de pérdida durante el entrenamiento | |
-| ![Métricas](evidencias/punto3/metricas_yolo.png) | Métricas finales del modelo (mAP, precisión, recall) | |
-| ![Detección en acción](evidencias/punto3/deteccion_resultado.png) | Resultado de detección sobre imagen de prueba | |
+| Evidencia | Descripción |
+|-----------|-------------|
+| ![Anotaciones](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/eb541e378014c9f51b4f4dc49223ffa82ea8b988/yolo1.png) | codigo en colab de entrenamiento de yolo |
+| ![Entrenamiento](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/eb541e378014c9f51b4f4dc49223ffa82ea8b988/results.png) | Curvas de pérdida durante el entrenamiento |
+| ![Métricas](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/eb541e378014c9f51b4f4dc49223ffa82ea8b988/matrixes.png) | Métricas finales del modelo (mAP, precisión, recall) | 
+| ![Detección en acción](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/eb541e378014c9f51b4f4dc49223ffa82ea8b988/detector.jpg) | Resultado de detección sobre imagen de prueba | 
 
 ---
 
