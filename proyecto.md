@@ -122,9 +122,9 @@ Chatbot capaz de recibir preguntas mediante **reconocimiento de voz** y responde
 
 | Evidencia | Descripción | Fecha |
 |-----------|-------------|-------|
-![imagen](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/b7085ae5040a8abbd5793b804c084257afc9ffc2/chat%20bot1.png). 
-| ![Interfaz chatbot](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/afa1e4cc635ed203ff556bf35c8e27065004a32d/chat%20bot%202.png) | Interfaz del chatbot funcionando | |
-| ![Respuesta de voz](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/60d14260fc327eee6c854248d7ed47e47d215bb3/chat%20bot%203.png) | Captura de respuesta generada sobre un componente | |
+![imagen](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/b7085ae5040a8abbd5793b804c084257afc9ffc2/chat%20bot1.png).|lo que se muestra a continuacion en las imagenes es el proceso en el cual se desarrolo el chat voz que a podra vincular con el detector de objetos 
+| ![Interfaz chatbot](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/afa1e4cc635ed203ff556bf35c8e27065004a32d/chat%20bot%202.png) 
+| ![Respuesta de voz](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/60d14260fc327eee6c854248d7ed47e47d215bb3/chat%20bot%203.png) 
 
 ---
 
@@ -141,13 +141,139 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 
 ###  Evidencias Fotográficas
 
-| Evidencia | Descripción | Fecha |
-|-----------|-------------|-------|
-| ![Dashboard principal](evidencias/punto5/dashboard_principal.png) | Vista principal de la aplicación Streamlit | |
-| ![Detección en plataforma](evidencias/punto5/deteccion_streamlit.png) | Detección de partes funcionando en la plataforma | |
-| ![Chatbot en plataforma](evidencias/punto5/chatbot_streamlit.png) | Chatbot con voz integrado en la plataforma | |
-| ![Demo completo](evidencias/punto5/demo_completo.png) | Demo del sistema completo en funcionamiento | |
+| Evidencia | Descripción | 
+|-----------|-------------|
+| ![Dashboard principal](evidencias/punto5/dashboard_principal.png) |  | 
+| ![Detección en plataforma](evidencias/punto5/deteccion_streamlit.png) 
+| ![Chatbot en plataforma](evidencias/punto5/chatbot_streamlit.png)
+| ![Demo completo](evidencias/punto5/demo_completo.png) 
 
+### codigo yolo 
+import cv2
+import speech_recognition as sr
+import pyttsx3
+ 
+# ==========================================
+# 1. CONFIGURACIÓN INICIAL (BOT Y YOLO)
+# ==========================================
+engine = pyttsx3.init()
+model = YOLO("best.pt")  # Tu modelo entrenado
+ 
+def hablar(texto):
+    print("\nBOT:", texto)
+    engine.say(texto)
+    engine.runAndWait()
+ 
+# Diccionario de componentes de tu amigo
+componentes = {
+    "ram": "La memoria RAM almacena datos temporales para mejorar el rendimiento del computador.",
+    "procesador": "El procesador ejecuta instrucciones y operaciones del computador.",
+    "monitor": "El monitor muestra información visual.",
+    "mouse": "El mouse permite controlar el cursor.",
+    "teclado": "El teclado sirve para ingresar información.",
+    "tarjeta grafica": "La tarjeta gráfica procesa imágenes y videojuegos.",
+    "fuente de poder": "La fuente de poder suministra energía al computador.",
+    "disco duro": "El disco duro almacena archivos y programas.",
+    "placa madre": "La placa madre conecta todos los componentes del computador.",
+    "ventilador": "El ventilador ayuda a enfriar el computador."
+}
+ 
+def escuchar():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("\nHabla ahora...")
+        r.adjust_for_ambient_noise(source, duration=0.3)
+        try:
+            audio = r.listen(source, timeout=4, phrase_time_limit=4)
+        except:
+            print("Tiempo de escucha agotado")
+            return None
+ 
+    try:
+        texto = r.recognize_google(audio, language="es-ES")
+        print("TÚ:", texto)
+        return texto.lower()
+    except:
+        print("No se entendió la voz")
+        return None
+ 
+# ==========================================
+# 2. INICIALIZAR CÁMARA
+# ==========================================
+cap = cv2.VideoCapture(0)
+cap.set(3, 640)
+cap.set(4, 480)
+ 
+hablar("Sistema de Inteligencia Artificial listo.")
+print("Presiona ESC en la ventana de la cámara para apagar el sistema.")
+ 
+objeto_detectado = None
+ 
+# ==========================================
+# 3. BUCLE PRINCIPAL EN TIEMPO REAL
+# ==========================================
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        print("Error al acceder a la cámara")
+        break
+ 
+    annotated_frame = frame.copy()
+ 
+    # Ejecutar tu modelo YOLO (confianza 40%)
+    results = model.predict(frame, imgsz=640, conf=0.4, verbose=False)
+ 
+    # Si el modelo ve algo, actualizamos qué objeto está en pantalla
+    if len(results) > 0 and len(results[0].boxes) > 0:
+        annotated_frame = results[0].plot()
+        # Tomamos el nombre del primer objeto que detecte en el fotograma
+        for box in results[0].boxes:
+            id_clase = int(box.cls[0])
+            objeto_detectado = model.names[id_clase].lower() 
+            break # Nos quedamos con el principal detectado
+ 
+    # Mostrar la cámara con los recuadros de YOLO
+    cv2.imshow("Camara IA - Deteccion", annotated_frame)
+ 
+    # Escuchar el teclado por si quieren cerrar con ESC (27)
+    tecla = cv2.waitKey(1) & 0xFF
+    if tecla == 27:
+        hablar("Apagando sistema")
+        break
+ 
+    # Si hay un objeto frente a la cámara, el bot interactúa por voz
+    if objeto_detectado:
+        print(f"[Viendo actualmente: {objeto_detectado}]")
+        pregunta = escuchar()
+ 
+        if pregunta is None:
+            # Si no habló, el bucle sigue actualizando la cámara
+            continue
+ 
+        if "salir" in pregunta:
+            hablar("Apagando sistema")
+            break
+ 
+        # Lógica de respuesta basada en lo que ve el ojo de YOLO
+        if "eso" in pregunta or "qué es" in pregunta:
+            respuesta = componentes.get(objeto_detectado, f"Veo un {objeto_detectado}, pero no tengo información de él.")
+        else:
+            encontrado = False
+            for c in componentes:
+                if c in pregunta:
+                    respuesta = componentes[c]
+                    encontrado = True
+                    break
+            if not encontrado:
+                respuesta = "No entendí tu pregunta, intenta preguntarme qué es eso."
+ 
+        hablar(respuesta)
+        # Limpiamos el objeto para forzar a que la cámara busque de nuevo en el siguiente ciclo
+        objeto_detectado = None
+ 
+# Liberar todo al cerrar
+cap.release()
+cv2.destroyAllWindows()
 ---
 
 ## Punto 6 — Despliegue en Raspberry Pi 
