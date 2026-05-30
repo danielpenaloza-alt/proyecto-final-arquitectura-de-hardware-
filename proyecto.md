@@ -168,7 +168,7 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 
 | Evidencia | Descripción | 
 |-----------|-------------|
-| ![Dashboard principal](evidencias/punto5/dashboard_principal.png) |  | 
+| ![Dashboard principal](evidencias/punto5/dashboard_principal.png) | evidencias del codigo final ejecutado mediante visual studio code lo cual se puede tambien abrir y descargar aplicacion en celular y usar el programa para detectar los componentes con alto porcentaje de precision   | 
 | ![Detección en plataforma](evidencias/punto5/deteccion_streamlit.png) 
 | ![Chatbot en plataforma](evidencias/punto5/chatbot_streamlit.png)
 | ![Demo completo](evidencias/punto5/demo_completo.png) 
