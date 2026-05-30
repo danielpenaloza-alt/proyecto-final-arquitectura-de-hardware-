@@ -17,8 +17,7 @@
 
 ## Descripción General
 
-Desarrollo de una plataforma de **visión computacional** para el reconocimiento automático de partes de un computador. El sistema integra un modelo de detección de objetos (YOLO), un chatbot generativo con soporte de voz, y se despliega en Streamlit. Como reto final, el modelo es optimizado y ejecutado en una **Raspberry Pi**.
-
+Desarrollo de una plataforma de **visión computacional** para el reconocimiento automático de partes de un computador. El sistema integra un modelo de detección de objetos (YOLO), un chatbot generativo con soporte de voz, y se despliega en Streamlit. 
 ---
 
 ## Tabla de Contenidos
@@ -29,7 +28,6 @@ Desarrollo de una plataforma de **visión computacional** para el reconocimiento
 - [Punto 3 — Modelo YOLO (Detección de Partes)](#punto-3--modelo-yolo-detección-de-partes)
 - [Punto 4 — Chatbot Generativo con Voz](#punto-4--chatbot-generativo-con-voz)
 - [Punto 5 — Despliegue en Streamlit](#punto-5--despliegue-en-streamlit)
-- [Punto 6 — Despliegue en Raspberry Pi ](#punto-6--despliegue-en-raspberry-pi-)
 - [Estructura del Repositorio](#estructura-del-repositorio)
 
 ---
@@ -58,8 +56,8 @@ Recolección automatizada de imágenes de al menos **10 componentes del PC** usa
 | Evidencia | Descripción | Fecha |
 |-----------|-------------|-------|
 | ![Scraping ejecutándose](evidencias/punto1/scraping_ejecucion.png) | Script de Selenium en ejecución | |
-| ![Estructura de carpetas](evidencias/punto1/estructura_bd.png) | Organización de la base de datos de imágenes | |
-| ![Muestra de imágenes](evidencias/punto1/muestra_imagenes.png) | Muestra de imágenes recolectadas por clase | |
+| ![Estructura de carpetas](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a57ded814c9b29adce2b5d923e5a3bc346388657/base%20de%20datos.png) | Organización de la base de datos de imágenes | |
+| ![Muestra de imágenes]() | Muestra de imágenes recolectadas por clase | |
 
 ---
 
@@ -69,7 +67,6 @@ Recolección automatizada de imágenes de al menos **10 componentes del PC** usa
 Proceso de **Extracción, Transformación y Carga** para limpiar y preparar las imágenes recolectadas. Se usa programación con **hilos (threads)** para optimizar el procesamiento.
 
 ###  Requerimientos
-- [ ] Pre-procesamiento y procesamiento con hilos (`threading`)
 - [ ] Limpieza de datos: filtrar imágenes válidas vs. inválidas
 - [ ] Extracción de información relevante y transformación
 - [ ] Documentación detallada en GitHub
@@ -149,36 +146,36 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | ![Demo completo](evidencias/punto5/demo_completo.png) 
 
 ### codigo yolo 
-import cv2
-import speech_recognition as sr
-import pyttsx3
+    import cv2
+    import speech_recognition as sr
+    import pyttsx3
  
-# ==========================================
-# 1. CONFIGURACIÓN INICIAL (BOT Y YOLO)
-# ==========================================
-engine = pyttsx3.init()
-model = YOLO("best.pt")  # Tu modelo entrenado
+## ==========================================
+## 1. CONFIGURACIÓN INICIAL (BOT Y YOLO)
+## ==========================================
+    engine = pyttsx3.init()
+    model = YOLO("best.pt")  # Tu modelo entrenado
  
-def hablar(texto):
-    print("\nBOT:", texto)
-    engine.say(texto)
-    engine.runAndWait()
+    def hablar(texto):
+      print("\nBOT:", texto)
+      engine.say(texto)
+      engine.runAndWait()
  
-# Diccionario de componentes de tu amigo
-componentes = {
-    "ram": "La memoria RAM almacena datos temporales para mejorar el rendimiento del computador.",
-    "procesador": "El procesador ejecuta instrucciones y operaciones del computador.",
-    "monitor": "El monitor muestra información visual.",
-    "mouse": "El mouse permite controlar el cursor.",
-    "teclado": "El teclado sirve para ingresar información.",
-    "tarjeta grafica": "La tarjeta gráfica procesa imágenes y videojuegos.",
-    "fuente de poder": "La fuente de poder suministra energía al computador.",
-    "disco duro": "El disco duro almacena archivos y programas.",
-    "placa madre": "La placa madre conecta todos los componentes del computador.",
-    "ventilador": "El ventilador ayuda a enfriar el computador."
+## Diccionario de componentes de tu amigo
+    componentes = {
+     "ram": "La memoria RAM almacena datos temporales para mejorar el rendimiento del computador.",
+     "procesador": "El procesador ejecuta instrucciones y operaciones del computador.",
+     "monitor": "El monitor muestra información visual.",
+     "mouse": "El mouse permite controlar el cursor.",
+     "teclado": "El teclado sirve para ingresar información.",
+     "tarjeta grafica": "La tarjeta gráfica procesa imágenes y videojuegos.",
+     "fuente de poder": "La fuente de poder suministra energía al computador.",
+     "disco duro": "El disco duro almacena archivos y programas.",
+     "placa madre": "La placa madre conecta todos los componentes del computador.",
+     "ventilador": "El ventilador ayuda a enfriar el computador."
 }
  
-def escuchar():
+    def escuchar():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("\nHabla ahora...")
@@ -197,24 +194,24 @@ def escuchar():
         print("No se entendió la voz")
         return None
  
-# ==========================================
-# 2. INICIALIZAR CÁMARA
-# ==========================================
-cap = cv2.VideoCapture(0)
-cap.set(3, 640)
-cap.set(4, 480)
+## ==========================================
+## 2. INICIALIZAR CÁMARA
+## ==========================================
+    cap = cv2.VideoCapture(0)
+    cap.set(3, 640)
+    cap.set(4, 480)
  
-hablar("Sistema de Inteligencia Artificial listo.")
-print("Presiona ESC en la ventana de la cámara para apagar el sistema.")
+    hablar("Sistema de Inteligencia Artificial listo.")
+    print("Presiona ESC en la ventana de la cámara para apagar el sistema.")
  
-objeto_detectado = None
+    objeto_detectado = None
  
-# ==========================================
-# 3. BUCLE PRINCIPAL EN TIEMPO REAL
-# ==========================================
-while True:
-    ret, frame = cap.read()
-    if not ret:
+## ==========================================
+## 3. BUCLE PRINCIPAL EN TIEMPO REAL
+## ==========================================
+    while True:
+      ret, frame = cap.read()
+      if not ret:
         print("Error al acceder a la cámara")
         break
  
@@ -271,30 +268,11 @@ while True:
         # Limpiamos el objeto para forzar a que la cámara busque de nuevo en el siguiente ciclo
         objeto_detectado = None
  
-# Liberar todo al cerrar
-cap.release()
-cv2.destroyAllWindows()
+    # Liberar todo al cerrar
+    cap.release()
+    cv2.destroyAllWindows()
 ---
 
-## Punto 6 — Despliegue en Raspberry Pi 
-
-###  Descripción
-Para obtener la **nota máxima (5.0)**, el modelo YOLO optimizado debe ejecutarse en una **Raspberry Pi**, demostrando el despliegue en hardware embebido.
-
-###  Requerimientos
-- [ ] Optimización del modelo YOLO (quantización / exportación a TFLite / ONNX)
-- [ ] Instalación y configuración del entorno en Raspberry Pi
-- [ ] Ejecución del modelo en tiempo real en la Raspberry Pi
-- [ ] Integración con la arquitectura computacional completa
-
-###  Evidencias Fotográficas
-
-| Evidencia | Descripción | Fecha |
-|-----------|-------------|-------|
-| ![Setup Raspberry Pi](evidencias/punto6/raspberry_setup.png) | Configuración física de la Raspberry Pi | |
-| ![Modelo corriendo](evidencias/punto6/modelo_raspberry.png) | YOLO ejecutándose en la Raspberry Pi | |
-| ![Resultado detección](evidencias/punto6/deteccion_raspberry.png) | Detección de componentes en la Raspberry Pi | |
-| ![Sistema completo](evidencias/punto6/sistema_completo.png) | Sistema embebido completo funcionando | |
 
 ---
 
@@ -308,7 +286,6 @@ Para obtener la **nota máxima (5.0)**, el modelo YOLO optimizado debe ejecutars
 │   ├── punto3/        # Capturas del entrenamiento YOLO
 │   ├── punto4/        # Capturas del chatbot con voz
 │   ├── punto5/        # Capturas del despliegue Streamlit
-│   └── punto6/        # Capturas del despliegue Raspberry Pi
 ├── 📂 punto1_scraping/
 │   └── scraper.py
 ├── 📂 punto2_etl/
@@ -320,8 +297,6 @@ Para obtener la **nota máxima (5.0)**, el modelo YOLO optimizado debe ejecutars
 │   └── chatbot_voz.py
 ├── 📂 punto5_streamlit/
 │   └── app.py
-├── 📂 punto6_raspberry/
-│   └── deploy_rpi.py
 └── README.md
 ```
 
@@ -331,12 +306,12 @@ Para obtener la **nota máxima (5.0)**, el modelo YOLO optimizado debe ejecutars
 
 | Punto | Descripción | Estado |
 |-------|-------------|--------|
-| 1 | Web Scraping y Base de Datos |  en proceso |
+| 1 | Web Scraping y Base de Datos |  completo |
 | 2 | ETL de la Base de Datos |  en proceso |
-| 3 | Modelo YOLO |  en proceso |
-| 4 | Chatbot con Voz | en proceso |
+| 3 | Modelo YOLO |  completo |
+| 4 | Chatbot con Voz | completo |
 | 5 | Despliegue Streamlit |  en proceso |
-| 6 | Despliegue Raspberry Pi  |  en proceso |
+
 
 > **Leyenda:**  Sin iniciar ·  En progreso ·  Completado
 
