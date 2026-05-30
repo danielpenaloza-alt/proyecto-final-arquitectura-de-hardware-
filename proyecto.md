@@ -171,7 +171,11 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | ![Dashboard principal](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(6).png) | evidencias del codigo final ejecutado mediante visual studio code lo cual se puede tambien abrir y descargar aplicacion en celular y usar el programa para detectar los componentes con alto porcentaje de precision   | 
 | ![Detección en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(7).png) 
 | ![Chatbot en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(8).png)| se evidencia que el chat de voz responde a las preguntar de saber cual es el componente |
-| ![Demo completo](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(9).png) | |
+| ![evidenvia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(9).png) | |
+| ![evidencia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/90f5fb3a8a0043163335f88dd83949525e144881/imagen%20(10).png) | |
+| ![evidencia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/90f5fb3a8a0043163335f88dd83949525e144881/imagen%20(11).png) | |
+| ![evidencia]() | |
+
 
 ### codigo yolo 
     from ultralytics import YOLO
@@ -284,7 +288,7 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
     cap.release()
     cv2.destroyAllWindows()
 
-###codigo pasado para ejecutar en raspberry
+###codigo para ejecutar en Raspberry PI
 ---
     rom ultralytics import YOLO
     import cv2
@@ -370,7 +374,7 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | 1 | Web Scraping y Base de Datos |  completo |
 | 2 | Modelo YOLO |  completo |
 | 3 | Chatbot con Voz | completo |
-| 4 | Despliegue Streamlit |  en proceso |
+| 4 | Despliegue Streamlit  + codigo para raspberry PI| completo |
 
 
 > **Leyenda:**  Sin iniciar ·  En progreso ·  Completado
