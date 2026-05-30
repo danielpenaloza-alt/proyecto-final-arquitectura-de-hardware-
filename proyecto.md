@@ -108,29 +108,9 @@ Recolección automatizada de imágenes de al menos **10 componentes del PC** . L
     continue
     driver.quit()
 
-
-## Punto 2 — ETL de la Base de Datos
-
-###  Descripción
-Proceso de **Extracción, Transformación y Carga** para limpiar y preparar las imágenes recolectadas. Se usa programación con **hilos (threads)** para optimizar el procesamiento.
-
-###  Requerimientos
-- [ ] Limpieza de datos: filtrar imágenes válidas vs. inválidas
-- [ ] Extracción de información relevante y transformación
-- [ ] Documentación detallada en GitHub
-
-### 📸 Evidencias Fotográficas
-
-| Evidencia | Descripción | Fecha |
-|-----------|-------------|-------|
-| ![ETL pipeline](evidencias/punto2/etl_pipeline.png) | Diagrama o flujo del proceso ETL implementado | |
-| ![Limpieza de datos](evidencias/punto2/limpieza_datos.png) | Comparación imágenes válidas vs. descartadas | |
-| ![Procesamiento con hilos](evidencias/punto2/hilos_ejecucion.png) | Ejecución del procesamiento paralelo con hilos | |
-| ![Dataset final](evidencias/punto2/dataset_final.png) | Dataset limpio y listo para entrenamiento | |
-
 ---
 
-## Punto 3 — Modelo YOLO (Detección de Partes)
+## Punto 2 — Modelo YOLO (Detección de Partes)
 
 ###  Descripción
 Entrenamiento y configuración de un modelo **YOLO** para clasificar y detectar las partes del PC en imágenes y video en tiempo real.
@@ -183,7 +163,7 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 - [ ] Módulo de detección de partes del PC (cámara / imagen)
 - [ ] Módulo de chatbot con voz integrado
 - [ ] Todo el desarrollo documentado paso a paso en GitHub
-
+ 
 ###  Evidencias Fotográficas
 
 | Evidencia | Descripción | 
@@ -330,10 +310,9 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
  proyecto-arquitectura-hardware
 ├── 📂 evidencias/
 │   ├── punto1/        # Capturas del web scraping y BD
-│   ├── punto2/        # Capturas del proceso ETL
-│   ├── punto3/        # Capturas del entrenamiento YOLO
-│   ├── punto4/        # Capturas del chatbot con voz
-│   ├── punto5/        # Capturas del despliegue Streamlit
+│   ├── punto2/        # Capturas del entrenamiento YOLO
+│   ├── punto3/        # Capturas del chatbot con voz
+│   ├── punto4/        # Capturas del despliegue Streamlit
 ├── 📂 punto1_scraping/
 │   └── scraper.py
 ├── 📂 punto2_etl/
@@ -355,10 +334,9 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | Punto | Descripción | Estado |
 |-------|-------------|--------|
 | 1 | Web Scraping y Base de Datos |  completo |
-| 2 | ETL de la Base de Datos |  en proceso |
-| 3 | Modelo YOLO |  completo |
-| 4 | Chatbot con Voz | completo |
-| 5 | Despliegue Streamlit |  en proceso |
+| 2 | Modelo YOLO |  completo |
+| 3 | Chatbot con Voz | completo |
+| 4 | Despliegue Streamlit |  en proceso |
 
 
 > **Leyenda:**  Sin iniciar ·  En progreso ·  Completado
