@@ -315,14 +315,12 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 │   ├── punto4/        # Capturas del despliegue Streamlit
 ├── 📂 punto1_scraping/
 │   └── scraper.py
-├── 📂 punto2_etl/
-│   └── etl_pipeline.py
-├── 📂 punto3_yolo/
+├── 📂 punto2_yolo/
 │   ├── train.py
 │   └── detect.py
-├── 📂 punto4_chatbot/
+├── 📂 punto3_chatbot/
 │   └── chatbot_voz.py
-├── 📂 punto5_streamlit/
+├── 📂 punto4_streamlit/
 │   └── app.py
 └── README.md
 ```
