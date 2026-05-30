@@ -8,8 +8,8 @@
 
 | Nombre | Rol |
 |--------|-------|
-|Juan Jose Salazar Munoz| creacion dechat bot  |
-| David Santiago Chivata Garcia |planeacion de base de datos  |
+|Juan Jose Salazar Munoz| creacion de chat bot  |
+| David Santiago Chivata Garcia | planeacion de base de datos  |
 |Victor Manuel Sarmiento puentes  | progamador del sistema de detecion de objetos  |
 | Daniel Felipe Peñaloza Bravo | crear y reportar probra y dar evidencias en git del proyecto  |
 
@@ -150,7 +150,7 @@ Chatbot capaz de recibir preguntas mediante **reconocimiento de voz** y responde
 ![imagen](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/b7085ae5040a8abbd5793b804c084257afc9ffc2/chat%20bot1.png).|lo que se muestra a continuacion en las imagenes es el proceso en el cual se desarrolo el chat voz que a podra vincular con el detector de objetos 
 | ![Interfaz chatbot](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/afa1e4cc635ed203ff556bf35c8e27065004a32d/chat%20bot%202.png) 
 | ![Respuesta de voz](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/60d14260fc327eee6c854248d7ed47e47d215bb3/chat%20bot%203.png) 
-
+ 
 ---
 
 ## Punto 5 — Despliegue en Streamlit
@@ -174,44 +174,40 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | ![Demo completo]() 
 
 ### codigo yolo 
-    import cv2
-    import speech_recognition as sr
-    import pyttsx3
+    from ultralytics import YOLO
+     import cv2
+     import speech_recognition as sr
+     import pyttsx3
  
-## ==========================================
-## 1. CONFIGURACIÓN INICIAL (BOT Y YOLO)
-## ==========================================
     engine = pyttsx3.init()
-    model = YOLO("best.pt")  # Tu modelo entrenado
  
     def hablar(texto):
-      print("\nBOT:", texto)
-      engine.say(texto)
-      engine.runAndWait()
+     print("\nBOT:", texto)
+     engine.say(texto)
+     engine.runAndWait()
  
-## Diccionario de componentes
     componentes = {
      "ram": "La memoria RAM almacena datos temporales para mejorar el rendimiento del computador.",
-     "procesador": "El procesador ejecuta instrucciones y operaciones del computador.",
+     "procesador": "El procesador ejecuta instrucciones y operaciones.",
      "monitor": "El monitor muestra información visual.",
      "mouse": "El mouse permite controlar el cursor.",
      "teclado": "El teclado sirve para ingresar información.",
-     "tarjeta grafica": "La tarjeta gráfica procesa imágenes y videojuegos.",
-     "fuente de poder": "La fuente de poder suministra energía al computador.",
-     "disco duro": "El disco duro almacena archivos y programas.",
-     "placa madre": "La placa madre conecta todos los componentes del computador.",
-     "ventilador": "El ventilador ayuda a enfriar el computador."
-}
+     "tarjeta grafica": "La tarjeta gráfica procesa imágenes.",
+     "fuente de poder": "La fuente de poder suministra energía.",
+     "disco duro": "El disco duro almacena archivos.",
+     "placa madre": "La placa madre conecta todo.",
+     "ventilador": "El ventilador enfría el sistema."
+    }
  
     def escuchar():
-    r = sr.Recognizer()
-    with sr.Microphone() as source:
+     r = sr.Recognizer()
+     with sr.Microphone() as source:
         print("\nHabla ahora...")
         r.adjust_for_ambient_noise(source, duration=0.3)
         try:
             audio = r.listen(source, timeout=4, phrase_time_limit=4)
         except:
-            print("Tiempo de escucha agotado")
+            print("Tiempo agotado")
             return None
  
     try:
@@ -219,69 +215,59 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
         print("TÚ:", texto)
         return texto.lower()
     except:
-        print("No se entendió la voz")
+        print("No se entendió")
         return None
  
-## ==========================================
-## 2. INICIALIZAR CÁMARA
-## ==========================================
-    cap = cv2.VideoCapture(0)
-    cap.set(3, 640)
-    cap.set(4, 480)
  
-    hablar("Sistema de Inteligencia Artificial listo.")
-    print("Presiona ESC en la ventana de la cámara para apagar el sistema.")
+    model = YOLO("best.pt")  
  
-    objeto_detectado = None
  
-## ==========================================
-## 3. BUCLE PRINCIPAL EN TIEMPO REAL
-## ==========================================
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)  
+ 
+ 
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+ 
+    if not cap.isOpened():
+     print(" No se pudo conectar a la cámara del celular.")
+     print("Revisa que la app (Iriun/DroidCam) esté abierta en la PC y en el móvil.")
+     exit()
+ 
+    hablar("Sistema listo conectado al teléfono celular")
+ 
+    objeto_actual = None
+ 
     while True:
-      ret, frame = cap.read()
-      if not ret:
-        print("Error al acceder a la cámara")
+    ret, frame = cap.read()
+    if not ret:
+        print("Error al leer la transmisión del celular")
         break
  
-    annotated_frame = frame.copy()
+    results = model.predict(frame, imgsz=640, conf=0.9, verbose=False)
  
-    # Ejecutar tu modelo YOLO (confianza 40%)
-    results = model.predict(frame, imgsz=640, conf=0.4, verbose=False)
- 
-    # Si el modelo ve algo, actualizamos qué objeto está en pantalla
     if len(results) > 0 and len(results[0].boxes) > 0:
-        annotated_frame = results[0].plot()
-        # Tomamos el nombre del primer objeto que detecte en el fotograma
-        for box in results[0].boxes:
-            id_clase = int(box.cls[0])
-            objeto_detectado = model.names[id_clase].lower() 
-            break # Nos quedamos con el principal detectado
+        box = results[0].boxes[0]
+        cls = int(box.cls[0])
+        objeto_actual = model.names[cls]
  
-    # Mostrar la cámara con los recuadros de YOLO
-    cv2.imshow("Camara IA - Deteccion", annotated_frame)
+        frame = results[0].plot()
+        print("Detectado:", objeto_actual)
  
-    # Escuchar el teclado por si quieren cerrar con ESC (27)
-    tecla = cv2.waitKey(1) & 0xFF
-    if tecla == 27:
-        hablar("Apagando sistema")
-        break
+    cv2.imshow("Camara - Celular en vivo", frame)
  
-    # Si hay un objeto frente a la cámara, el bot interactúa por voz
-    if objeto_detectado:
-        print(f"[Viendo actualmente: {objeto_detectado}]")
+    if cv2.waitKey(1) & 0xFF == ord('s'):
         pregunta = escuchar()
  
         if pregunta is None:
-            # Si no habló, el bucle sigue actualizando la cámara
+            hablar("No entendí")
             continue
  
         if "salir" in pregunta:
-            hablar("Apagando sistema")
+            hablar("Apagando")
             break
  
-        # Lógica de respuesta basada en lo que ve el ojo de YOLO
-        if "eso" in pregunta or "qué es" in pregunta:
-            respuesta = componentes.get(objeto_detectado, f"Veo un {objeto_detectado}, pero no tengo información de él.")
+        if "eso" in pregunta and objeto_actual:
+            respuesta = componentes.get(objeto_actual, "No tengo información de eso")
         else:
             encontrado = False
             for c in componentes:
@@ -289,14 +275,12 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
                     respuesta = componentes[c]
                     encontrado = True
                     break
+ 
             if not encontrado:
-                respuesta = "No entendí tu pregunta, intenta preguntarme qué es eso."
+                respuesta = "No entendí la pregunta"
  
         hablar(respuesta)
-        # Limpiamos el objeto para forzar a que la cámara busque de nuevo en el siguiente ciclo
-        objeto_detectado = None
  
-    # Liberar todo al cerrar
     cap.release()
     cv2.destroyAllWindows()
 ---
