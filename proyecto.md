@@ -168,10 +168,10 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 
 | Evidencia | Descripción | 
 |-----------|-------------|
-| ![Dashboard principal](evidencias/punto5/dashboard_principal.png) | evidencias del codigo final ejecutado mediante visual studio code lo cual se puede tambien abrir y descargar aplicacion en celular y usar el programa para detectar los componentes con alto porcentaje de precision   | 
-| ![Detección en plataforma](evidencias/punto5/deteccion_streamlit.png) 
-| ![Chatbot en plataforma](evidencias/punto5/chatbot_streamlit.png)
-| ![Demo completo](evidencias/punto5/demo_completo.png) 
+| ![Dashboard principal](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a73d49730e0673faa4f2773b812e06c3a69956b9/imagen%20(1).png) | evidencias del codigo final ejecutado mediante visual studio code lo cual se puede tambien abrir y descargar aplicacion en celular y usar el programa para detectar los componentes con alto porcentaje de precision   | 
+| ![Detección en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a73d49730e0673faa4f2773b812e06c3a69956b9/imagen%20(4).png) 
+| ![Chatbot en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a73d49730e0673faa4f2773b812e06c3a69956b9/imagen%20(5).png)| se evidencia que el chat de voz responde a las preguntar de saber cual es el componente |
+| ![Demo completo]() 
 
 ### codigo yolo 
     import cv2
