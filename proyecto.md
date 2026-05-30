@@ -189,7 +189,7 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
       engine.say(texto)
       engine.runAndWait()
  
-## Diccionario de componentes de tu amigo
+## Diccionario de componentes
     componentes = {
      "ram": "La memoria RAM almacena datos temporales para mejorar el rendimiento del computador.",
      "procesador": "El procesador ejecuta instrucciones y operaciones del computador.",
