@@ -35,13 +35,13 @@ Desarrollo de una plataforma de **visión computacional** para el reconocimiento
 ## Punto 1 — Web Scraping y Base de Datos
 
 ###  Descripción
-Recolección automatizada de imágenes de al menos **10 componentes del PC** usando `Selenium`. La base de datos debe contener un mínimo de **100 imágenes por componente**.
+Recolección automatizada de imágenes de al menos **10 componentes del PC** . La base de datos debe contener un mínimo de **100 imágenes por componente**.
 
 **Componentes objetivo:**
 `monitor` · `chasis` · `mouse` · `teclado` · `altavoces` · `impresora` · `webcam` · `CPU` · `memoria RAM` · `disco duro` · `tarjeta de video` · `tarjeta de red`
 
 ###  Requerimientos
-- [ ] Script de web scraping con `Selenium`
+- [ ] Script de web scraping 
 - [ ] Búsqueda de mínimo 10 componentes
 - [ ] Mínimo 100 imágenes por componente
 - [ ] El chatbot debe poder explicar definición y función de cada elemento
@@ -53,13 +53,61 @@ Recolección automatizada de imágenes de al menos **10 componentes del PC** usa
 > ![Descripción](evidencias/punto1/nombre_imagen.png)
 > ```
 
-| Evidencia | Descripción | Fecha |
-|-----------|-------------|-------|
-| ![Scraping ejecutándose](evidencias/punto1/scraping_ejecucion.png) | Script de Selenium en ejecución | |
-| ![Estructura de carpetas](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a57ded814c9b29adce2b5d923e5a3bc346388657/base%20de%20datos.png) | Organización de la base de datos de imágenes | |
-| ![Muestra de imágenes]() | Muestra de imágenes recolectadas por clase | |
+| Evidencia | Descripción |
+|-----------|-------------|
+| ![Estructura de carpetas](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a57ded814c9b29adce2b5d923e5a3bc346388657/base%20de%20datos.png) | Organización de la base de datos de imágenes |
+| ![Muestra de imágenes](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/44a558e21a9bc1636da516b4fd12c6cc77cb8222/orgimg.png) | Muestra de imágenes recolectadas por clase |
+| ![Muestra de imágenes](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/d1da68608a460d300d9fa94f9720fb41dc11c642/chatexp.png) | chat de voz en ejecucion |
 
+###codigo de scrip 
 ---
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    import requests
+    import time
+    import os
+    carpeta_destino = r'C:\Users\VictorManuelSarmient\Desktop\Descarga de imagenes\imagenes'
+    if not os.path.exists(carpeta_destino):
+    os.makedirs(carpeta_destino)
+    url="https://www.google.com/search?q=ram+pc&tbm=isch"
+    driver = webdriver.Chrome()
+    driver.maximize_window()
+    driver.get(url)
+ 
+
+    driver.execute_script("window.scrollBy(0, 1000);")
+    time.sleep(10)
+    print("Cargando más resultados...")
+    for _ in range(10):
+    driver.execute_script("window.scrollBy(0, 2000);")
+    time.sleep(2)
+    enlaces = driver.find_elements(By.CLASS_NAME, "YQ4gaf")
+    print(f"Se encontraron {len(enlaces)} imágenes en total. Empezando descarga...")
+    i=0
+    for enlace in enlaces:
+      try:
+        link = enlace.get_attribute('src')
+          if link and link.startswith('http'):
+          Imagen_Ram = requests.get(link)
+ 
+      if  Imagen_Ram.status_code == 200:
+        print (f"Descargando: {link}")  
+        i+=1
+        nombreImagen = 'Ram' + str(i) + '.jpg'
+        nombre_archivo = f"Ram_{i}.jpg"
+        ruta_completa = os.path.join(carpeta_destino, nombre_archivo)
+               
+        print(f"Descargando en carpeta: {nombre_archivo}")
+        with open(ruta_completa, 'wb') as img:
+         img.write(Imagen_Ram.content)
+ 
+        if i >= 300:
+           break
+    except Exception as e:
+              print(f"Error al descargar la imagen: {e}")
+    continue
+    driver.quit()
+
 
 ## Punto 2 — ETL de la Base de Datos
 
