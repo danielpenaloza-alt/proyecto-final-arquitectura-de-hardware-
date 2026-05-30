@@ -168,10 +168,10 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 
 | Evidencia | Descripción | 
 |-----------|-------------|
-| ![Dashboard principal](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a73d49730e0673faa4f2773b812e06c3a69956b9/imagen%20(1).png) | evidencias del codigo final ejecutado mediante visual studio code lo cual se puede tambien abrir y descargar aplicacion en celular y usar el programa para detectar los componentes con alto porcentaje de precision   | 
-| ![Detección en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a73d49730e0673faa4f2773b812e06c3a69956b9/imagen%20(4).png) 
-| ![Chatbot en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/a73d49730e0673faa4f2773b812e06c3a69956b9/imagen%20(5).png)| se evidencia que el chat de voz responde a las preguntar de saber cual es el componente |
-| ![Demo completo]() 
+| ![Dashboard principal](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(6).png) | evidencias del codigo final ejecutado mediante visual studio code lo cual se puede tambien abrir y descargar aplicacion en celular y usar el programa para detectar los componentes con alto porcentaje de precision   | 
+| ![Detección en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(7).png) 
+| ![Chatbot en plataforma](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(8).png)| se evidencia que el chat de voz responde a las preguntar de saber cual es el componente |
+| ![Demo completo](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(9).png) | |
 
 ### codigo yolo 
     from ultralytics import YOLO
@@ -283,6 +283,58 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
  
     cap.release()
     cv2.destroyAllWindows()
+
+###codigo pasado para ejecutar en raspberry
+---
+    rom ultralytics import YOLO
+    import cv2
+    import speech_recognition as sr
+    import os
+ 
+    def hablar(texto):
+    print("\nBOT:", texto)
+    os.system(f'espeak "{texto}"')
+ 
+    model = YOLO("best.pt")
+ 
+    cap = cv2.VideoCapture(0)
+ 
+    if not cap.isOpened():
+    print("No se pudo abrir la cámara")
+    exit()
+ 
+    hablar("Sistema listo")
+ 
+    while True:
+ 
+    ret, frame = cap.read()
+ 
+    if not ret:
+        break
+ 
+    results = model.predict(
+        frame,
+        imgsz=640,
+        conf=0.7,
+        verbose=False
+    )
+ 
+    frame = results[0].plot()
+ 
+    cv2.imshow("Raspberry Vision", frame)
+ 
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+ 
+    cap.release()
+    cv2.destroyAllWindows()
+   
+
+
+
+
+
+   
 ---
 
 
