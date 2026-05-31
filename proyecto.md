@@ -174,7 +174,7 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | ![evidenvia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/8b9cde48e4f1dc4c9b0dbcbd2f31881bdf595be2/imagen%20(9).png) | |
 | ![evidencia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/90f5fb3a8a0043163335f88dd83949525e144881/imagen%20(10).png) | |
 | ![evidencia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/90f5fb3a8a0043163335f88dd83949525e144881/imagen%20(11).png) | |
-[![vídeo](https://youtu.be/wgvWpxmTPM8)](https://youtu.be/wgvWpxmTPM8)
+[![vídeo](https://youtu.be/wgvWpxmTPM8)](https://youtu.be/wgvWpxmTPM8)  |dar clik encima de donde dice video para reproducir |
 
 ###nota
 ---
