@@ -175,6 +175,7 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | ![evidencia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/90f5fb3a8a0043163335f88dd83949525e144881/imagen%20(10).png) | |
 | ![evidencia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/90f5fb3a8a0043163335f88dd83949525e144881/imagen%20(11).png) | |
 [![video de evidencia](https://youtu.be/wgvWpxmTPM8)]
+[![vídeo](https://youtu.be/wgvWpxmTPM8)](https://youtu.be/wgvWpxmTPM8)
 
 
 ### codigo yolo 
