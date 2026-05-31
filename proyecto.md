@@ -176,6 +176,12 @@ Integración de todos los módulos (detección YOLO + chatbot con voz) en una **
 | ![evidencia](https://github.com/danielpenaloza-alt/proyecto-final-arquitectura-de-hardware-/blob/90f5fb3a8a0043163335f88dd83949525e144881/imagen%20(11).png) | |
 [![vídeo](https://youtu.be/wgvWpxmTPM8)](https://youtu.be/wgvWpxmTPM8)
 
+###nota
+---
+es inportante aclrar que todo el codigo sin su buena instalacion de librerias puede dar error por lo tanto invitamos al profesor a usar el codigo para verificar su funcionamiento, se adjuntoron evidencias del que el codigo corer bien en todo aspecto dando a entender su principal funcion la cual es poder detectar bien los diferentes componentes de un PC.
+
+por ultimo y no menos importante queda anexado el codigo para ejecutar en una raspberry pero sin tener una no podemos verivicar su funcionalidad pero el codigo que da como evidencia de que se intento de hacer el punto final 
+
 
 ### codigo yolo 
     from ultralytics import YOLO
